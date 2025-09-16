@@ -1,4 +1,4 @@
-from consumers import FileUploadConsumer
+from .consumers import FileUploadConsumer
 from django.urls import re_path
 
 
