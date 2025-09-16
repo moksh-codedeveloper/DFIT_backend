@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import index
+from .views import get_socket_token
 
 urlpatterns = [
-    path('', index) # type: ignore
+    path("socket-token/", get_socket_token, name="get_socket_token") # type: ignore
 ]

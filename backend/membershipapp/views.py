@@ -1,8 +1,10 @@
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def index(request):
-    if request.method == 'GET':
-        return JsonResponse({'message' : 'you are in the membership now pay the fees you fool'})
-    
+@login_required
+@ensure_csrf_cookie
+def get_socket_token(request):
+    # For development only, create or retrieve a token associated with the user
+    token = "user-specific-development-token"
+    return JsonResponse({"token": token})
