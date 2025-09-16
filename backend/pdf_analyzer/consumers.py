@@ -61,9 +61,10 @@ class FileUploadConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def get_user_from_token(self, token):
+        from django.contrib.auth.models import User  # ✅ Import inside the method
+        from django.core.exceptions import ObjectDoesNotExist
+
         try:
-            # For development: find user by a static token
-            # In production, you should implement proper token validation
-            return User.objects.get(username="testuser")  # Or use token logic here
-        except User.DoesNotExist:
+            return User.objects.get(username="testuser")  # Replace with actual logic
+        except ObjectDoesNotExist:
             return None
